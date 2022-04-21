@@ -53,13 +53,14 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
+    redirect: '/change_password',
     children: [
       {
-        path: 'dashboard',
-        component: () => import('@/views/dashboard/index'),
-        name: 'Dashboard',
-        meta: { title: '分析页', icon: 'dashboard', affix: true }
+        path: 'change_password',
+        component: () => import('@/views/changePassword/index'),
+        name: 'ChangePassword',
+        hidden: true,
+        meta: { title: '修改密码', icon: 'lock' }
       }
     ]
   }

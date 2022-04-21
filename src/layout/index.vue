@@ -12,6 +12,7 @@
         <settings />
       </right-panel>
     </div>
+    <back-to-top />
   </div>
 </template>
 
@@ -20,6 +21,7 @@ import RightPanel from '@/components/RightPanel'
 import { AppMain, Navbar, Settings, Sidebar, TagsView } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
 import { mapState } from 'vuex'
+import BackToTop from '@/components/BackToTop'
 
 export default {
   name: 'Layout',
@@ -29,7 +31,8 @@ export default {
     RightPanel,
     Settings,
     Sidebar,
-    TagsView
+    TagsView,
+    BackToTop
   },
   mixins: [ResizeMixin],
   computed: {

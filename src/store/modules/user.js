@@ -1,5 +1,5 @@
 import { login, logout } from '@/api/user'
-import { getToken, setToken, removeToken } from '@/utils/auth'
+import { getToken, setToken, removeToken, setUserInfo, getUserInfo, removeUserInfo } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
 
 const state = {
@@ -39,6 +39,7 @@ const actions = {
         // 设置token
         commit('SET_TOKEN', data.password)
         setToken(data.password)
+        setUserInfo(data)
         resolve()
       }).catch(error => {
         reject(error)
@@ -50,10 +51,11 @@ const actions = {
   getInfo({ commit, state }) {
     const roles = ['admin']
     return new Promise((resolve, reject) => {
+      const userInfo = getUserInfo()
       // 设置管理员名称
-      commit('SET_NAME', state.name)
+      commit('SET_NAME', userInfo.name)
       // 设置头像
-      commit('SET_AVATAR', defaultAvatar)
+      commit('SET_AVATAR', userInfo.avatar || defaultAvatar)
       // 设置异步路由
       commit('SET_ROLES', roles)
       resolve(roles)
@@ -67,6 +69,7 @@ const actions = {
         commit('SET_TOKEN', '')
         commit('SET_ROLES', [])
         removeToken()
+        removeUserInfo()
         resetRouter()
 
         // reset visited views and cached views

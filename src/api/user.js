@@ -21,3 +21,12 @@ export function logout() {
     method: 'POST'
   })
 }
+
+// 修改密码
+export function changePassword(value) {
+  return request({
+    method: 'POST',
+    url: '/api/back/user/updatePassword',
+    data: value
+  })
+}
